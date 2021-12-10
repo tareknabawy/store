@@ -70,6 +70,13 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'rtconner/laravel-tagging' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Conner\\Tagging\\Providers\\TaggingServiceProvider',
+    ),
+  ),
   'simplesoftwareio/simple-qrcode' => 
   array (
     'providers' => 

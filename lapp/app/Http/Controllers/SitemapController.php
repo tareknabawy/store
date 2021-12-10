@@ -1,138 +1,106 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Application;
-use App\News;
-use App\Page;
-use App\Topic;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\View;
-
-class SitemapController extends Controller
+use Illuminate\Http\Request;
+use DateTime;
+class SiteMapController extends Controller
 {
+    public $items_per_page = 100 ;
+    public $data;
 
-    public function __construct()
+    public function __construct($foo = null)
     {
-        // Site Settings
-        $site_settings = DB::table('settings')->get();
-
-        foreach ($site_settings as $setting) {
-            $settings[$setting
-                    ->name] = $setting->value;
+        $this->data= collect([
+            [
+                'name'=>"apps",
+                'index_route_name'=>"apps.index",
+                'show_route_name'=>"app.show",
+                'data'=>\App\Application::query(),
+            ],
+            [
+                'name'=>"pages",
+                'index_route_name'=>"pages.index",
+                'show_route_name'=>"page.show",
+                'data'=>\App\Page::query(),
+            ],
+            [
+                'name'=>"categories",
+                'index_route_name'=>"categories.index",
+                'show_route_name'=>"category.show",
+                'data'=>\App\Category::query(),
+            ],
+            [
+                'name'=>"platforms",
+                'index_route_name'=>"platforms.index",
+                'show_route_name'=>"platform.show",
+                'data'=>\App\Platform::query(),
+            ],
+            [
+                'name'=>"topics",
+                'index_route_name'=>"topics.index",
+                'show_route_name'=>"topic.show",
+                'data'=>\App\Topic::query(),
+            ],
+            [
+                'name'=>"news",
+                'index_route_name'=>"news.index",
+                'show_route_name'=>"news.show",
+                'data'=>\App\News::query(),
+            ],
+            [
+                'name'=>"topicitems",
+                'index_route_name'=>"topicitems.index",
+                'show_route_name'=>"topicitem.show",
+                'data'=>\App\TopicItem::query(),
+            ],
+            
+        ]);
+    }
+    public function sitemap_init(Request $request){
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Pragma: no-cache");
+        header("Expires: Sat, 26 Jul 2021 05:00:00 GMT");
+    }
+    public function viewer(Request $request,$name,$page){
+        $request->merge([
+            'name'=>$name,
+            'page'=>$page
+        ]);
+        $request->validate([
+            'name'=>'required|in:'.implode(',',$this->data->pluck('name')->toArray()),
+            'page'=>'required|integer|min:0,max:10000'
+        ]);
+        $urls  = [];
+        $items = $this->data->where('name',$request->name)->first()['data']->paginate();
+        $route = $this->data->where('name',$request->name)->first()['show_route_name'];
+        foreach($items as $item){
+            $url='<url><loc>'.route($route,$item->slug).'</loc><priority>1.0</priority><lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod></url>';
+            array_push($urls,$url);
+        } 
+        $urls=implode( '',$urls);
+        return response('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'.$urls.'</urlset>', 200, [
+            'Content-Type' => 'application/xml'
+        ]);
+    }
+    public function generator($items=[]){
+        $urls=[];
+        foreach($items as $item){
+            for($i=0; $i< ceil($item['data']->count()/$this->items_per_page);$i++ ){
+                $url='<sitemap><loc>'.env("APP_URL").'/sitemaps/'.$item['name'].'/'.$i.'/sitemap.xml</loc></sitemap>';
+                array_push($urls,$url);
+            }
         }
-
-        $this->app_base = $settings['app_base'];
-        $this->news_base = $settings['news_base'];
-
-        // Pass data to views
-        View::share(['settings' => $settings]);
+        $urls=implode('',$urls);
+        return response('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.$urls.'</sitemapindex>', 200, [
+            'Content-Type' => 'application/xml'
+        ]);
     }
-
-    /** Index */
-    public function index()
+    public function sitemap(Request $request)
     {
-        // Return view
-        return response()->view('frontend::sitemap.index')
-            ->header('Content-Type', 'text/xml');
+        $this->sitemap_init($request);
+        if(count($this->data))
+            return $this->generator($this->data);
+
     }
-
-    /** Apps */
-    public function apps()
-    {
-        // List of the applications
-        $apps = Cache::rememberForever("sitemap-apps", function () {
-            Cache::increment('total_cached');
-            return Application::latest()->get();
-        });
-
-        // Return view
-        return response()
-            ->view('frontend::sitemap.apps', ['apps' => $apps])->header('Content-Type', 'text/xml');
-    }
-
-    /** Pages */
-    public function pages()
-    {
-        // List of the custom pages
-        $pages = Cache::rememberForever("sitemap-pages", function () {
-            Cache::increment('total_cached');
-            return Page::latest()->get();
-        });
-
-        // Return view
-        return response()
-            ->view('frontend::sitemap.pages', ['pages' => $pages])->header('Content-Type', 'text/xml');
-    }
-
-    /** News */
-    public function news()
-    {
-        // List of the news
-        $news = Cache::rememberForever("sitemap-news", function () {
-            Cache::increment('total_cached');
-            return News::latest()->get();
-        });
-
-        // Return view
-        return response()
-            ->view('frontend::sitemap.news', ['news' => $news])->header('Content-Type', 'text/xml');
-    }
-
-    /** Categories */
-    public function categories()
-    {
-        // List of the categories
-        $categories = Cache::rememberForever("sitemap-categories", function () {
-            Cache::increment('total_cached');
-            return DB::select(DB::raw("
-            SELECT c.slug,(select count(*) from applications where category = c.id) as count FROM categories c"));
-        });
-
-        // Return view
-        return response()->view('frontend::sitemap.categories', ['categories' => $categories])->header('Content-Type', 'text/xml');
-    }
-
-    /** Platforms */
-    public function platforms()
-    {
-        // List of the platforms
-        $platforms = Cache::rememberForever("sitemap-platforms", function () {
-            Cache::increment('total_cached');
-            return DB::select(DB::raw("SELECT c.slug,(select count(*) from applications where platform = c.id) as count FROM platforms c"));
-        });
-
-        // Return view
-        return response()->view('frontend::sitemap.platforms', ['platforms' => $platforms])->header('Content-Type', 'text/xml');
-    }
-
-    /** Topics */
-    public function topics()
-    {
-        // List of the topics
-        $topics = Cache::rememberForever("sitemap-topics", function () {
-            Cache::increment('total_cached');
-            return Topic::latest()->get();
-        });
-
-        // Return view
-        return response()
-            ->view('frontend::sitemap.topics', ['topics' => $topics])->header('Content-Type', 'text/xml');
-    }
-
-    /** Tags */
-    public function tags()
-    {
-        // List of the tags
-        $tags = Cache::rememberForever("sitemap-tags", function () {
-            Cache::increment('total_cached');
-            return DB::table('tagging_tags')->orderBy('id', 'desc')->get();
-        });
-
-        // Return view
-        return response()
-            ->view('frontend::sitemap.tags', ['tags' => $tags])->header('Content-Type', 'text/xml');
-    }
-
-
 }

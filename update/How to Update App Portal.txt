@@ -1,0 +1,15 @@
+How to update App Portal
+
+1. [Important] Take a backup of your database and all files before starting the update.
+2. Upload update.php to your public folder.
+3. Run yoursite.com/update.php in your browser, you will see "OK" message, you can remove this file from your FTP server.
+4. There are 2 folders in this folder, public, and lapp, replace files in your FTP server with these files.
+5. Create a folder named "files" on the public folder and set chmod to 755
+6. Clear your browser cache.
+7. If you are using a service like Cloudflare, please purge the cache.
+
+Important Note: If lapp folder is not located in your root folder, please edit update.php and change the path according to your directory structure.
+
+$lapp_location="../lapp"; // lapp folder location
+
+If you have experience any problems, contact us at https://codecanyon.net/item/app-portal/25416622/support

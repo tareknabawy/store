@@ -1,0 +1,75 @@
+App Portal Changelog
+
+1.4 - Sep. 3, 2021
+
+Added: Custom App Slugs
+Added: Custom Category Meta Description
+Added: Custom App Meta Description
+Added: Enable/Disable Cache System
+Added: Schema.org Markup for Breadcrumbs
+Added: File Upload Support
+Added: Pinned Apps for Category and Platform Pages
+Added: New Navbar Styles
+Added: Recommended Terms for Search Box
+Added: Client IP address detection for Cloudflare users (CF-Connecting-IP)
+Added: Estimated Reading Time on News Pages
+Added: Auto Comment Approval
+Fixed: Bugs
+Improved: Database Queries
+
+1.3 - Nov. 23, 2020
+
+Added: Topics
+Added: Tags
+Added: New Text Editor
+Added: Custom Permalinks
+Added: Breadcrumbs
+Added: Favicon Upload Support
+Added: Ping Google When Sitemap Updates
+Added: New Navbar Styles
+Added: New Ad Place
+Fixed: Bugs
+Improved: Better Mobile Experience
+Improved: Comment Button Visibility
+
+1.2 - May. 05, 2020
+
+Added: Home Page Slider
+Added: News Section
+Added: New Apps Section
+Added: Editor’s Choice Section
+Added: Featured Apps Section
+Added: Must-Have Apps Section
+Added: Popular Apps In Last 24 Hours Section
+Added: RSS Feed
+Added: 10 Navbar Colors
+Added: QR Code Link
+Added: New Ad Places
+Improved: Position of Download Button in the Mobile Version
+
+1.1 - Feb. 10, 2020
+-----------------------
+Added: Auto content submission
+Added: Category settings for content manager
+Added: Built-in translation system
+Added: Screenshots
+Added: User Reviews
+Added: Other apps in the category 
+Added: Cookies notification bar
+Added: App submission form
+Added: Buy Now button
+Added: Category and platform details in app listing pages in dashboard
+Added: Version checker
+Added: Show More/Less feature for long app details
+Fixed: Alignment problem in share buttons
+Fixed: Alignment problem in search box
+Fixed: Line break problem in app descriptions
+Fixed: Shell_exec error message problem
+
+1.0.1 - Feb. 6, 2020
+-----------------------
+- Security improvement
+
+1.0 – Jan. 11, 2020
+-----------------------
+- Initial Release

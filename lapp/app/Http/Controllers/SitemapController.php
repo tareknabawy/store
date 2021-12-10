@@ -9,7 +9,6 @@ class SiteMapController extends Controller
     public $items_per_page = 100 ;
     public $data;
 	
-
     public function __construct($foo = null)
     {
         $this->data= collect([

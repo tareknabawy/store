@@ -1,3 +1,7 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^apkstore.live [NC]
+RewriteRule ^(.*)$ https://www.apkstore.live/$1 [L,R=301,NC]
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes

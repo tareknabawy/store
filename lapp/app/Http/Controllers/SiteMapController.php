@@ -67,27 +67,63 @@ class SiteMapController extends Controller
             'name'=>$name,
             'page'=>$page
         ]);
+		
+		
         $request->validate([
             'name'=>'required|in:'.implode(',',$this->data->pluck('name')->toArray()),
             'page'=>'required|integer|min:0,max:10000'
-        ]);
+    ]);
         $urls  = [];
         $items = $this->data->where('name',$request->name)->first()['data']->paginate();
         $route = $this->data->where('name',$request->name)->first()['show_route_name'];
-        foreach($items as $item){
-            $url='<url><loc>'.route($route,$item->slug).'</loc><priority>1.0</priority><lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod></url>';
-            array_push($urls,$url);
+		
+    foreach($items as $item){
+			
+			 /** Sitemap link pages, application, news,*/
+			 
+            
+			
+	$url='<url>
+		<loc>'.route($route,$item->slug).'</loc>
+		<lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod>';
+
+    if(isset($item->image) && $item->image!=null)
+        $url.='<image:image>
+            <image:loc>'.env('APP_URL').'/images/'.$item->image.'</image:loc>
+            <image:title>'.$item->slug.'</image:title>
+            <image:caption>'.$item->slug.'</image:caption>
+        </image:image>';
+
+	$url.='</url>';
+			
+			
+			
+    array_push($urls,$url);
         } 
         $urls=implode( '',$urls);
-        return response('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'.$urls.'</urlset>', 200, [
+        return response('<urlset
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        >'.$urls.'</urlset>', 200, [
             'Content-Type' => 'application/xml'
         ]);
     }
+	
+	 /** Sitemap link categories*/
+	
+	
     public function generator($items=[]){
         $urls=[];
         foreach($items as $item){
             for($i=0; $i< ceil($item['data']->count()/$this->items_per_page);$i++ ){
+				
+				
+				 
                 $url='<sitemap><loc>'.env("APP_URL").'/sitemaps/'.$item['name'].'/'.$i.'/sitemap.xml</loc></sitemap>';
+				
+				
                 array_push($urls,$url);
             }
         }

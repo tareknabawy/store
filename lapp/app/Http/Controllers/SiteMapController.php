@@ -85,13 +85,16 @@ class SiteMapController extends Controller
 			
 	$url='<url>
 		<loc>'.route($route,$item->slug).'</loc>
-		<lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod>
-		<image:image>
-			<image:loc>http://localhost/store/images/'.$applications_image.'</image:loc>
-			<image:title>xxxxxxx</image:title>
-			<image:caption>00000000000</image:caption>
-		</image:image>
-	</url>';
+		<lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod>';
+
+    if(isset($item->image) && $item->image!=null)
+        $url.='<image:image>
+            <image:loc>'.env('APP_URL').'/images/'.$item->image.'</image:loc>
+            <image:title>'.$item->slug.'</image:title>
+            <image:caption>'.$item->slug.'</image:caption>
+        </image:image>';
+
+	$url.='</url>';
 			
 			
 			

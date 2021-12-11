@@ -88,7 +88,7 @@ Route::get('/admin', 'ApplicationController@index');
 Route::get('/crawler/{slug}', 'AppCrawlerController@index');
 
 Auth::routes([
-    'register' => false,
+    'register' => true,
     'reset' => true,
     'verify' => false,
 ]);

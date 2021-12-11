@@ -669,7 +669,7 @@ iframe {
 }
 
 .nav-bg-1 {
-  background-color: #4d4266;
+  background-color: #af900c;
 }
 
 .nav-bg-2 {
@@ -1416,7 +1416,7 @@ iframe {
   }
 
   .nav-bg-1 {
-    background-image: linear-gradient(to left, #312942, #4d4266 20%) !important;
+    background-image: linear-gradient(to left, #af900c, #af900c 20%) !important;
   }
 
   .nav-bg-2 {

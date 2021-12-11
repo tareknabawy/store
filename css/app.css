@@ -669,7 +669,7 @@ iframe {
 }
 
 .nav-bg-1 {
-  background-color: #af900c;
+  background-color: #4d4266;
 }
 
 .nav-bg-2 {
@@ -762,10 +762,11 @@ iframe {
 }
 
 .nav-scroller a {
-  font-size: 14px;
-  color: #fff;
-  margin-right: 3px;
-  padding: .5rem !important;
+    font-size: 14px;
+    color: #fff;
+    margin-right: 9px;
+    padding: 0.5rem !important;
+    background-color: #b78b1d;
 }
 
 .nav-scroller a:first-child  {
@@ -1416,7 +1417,7 @@ iframe {
   }
 
   .nav-bg-1 {
-    background-image: linear-gradient(to left, #af900c, #af900c 20%) !important;
+    background-image: linear-gradient(to left, #312942, #4d4266 20%) !important;
   }
 
   .nav-bg-2 {

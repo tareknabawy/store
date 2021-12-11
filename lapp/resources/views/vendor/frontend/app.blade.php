@@ -304,6 +304,8 @@
             </div>
             <!-- /Grid column -->
 
+          
+
             <!-- Grid column -->
             <div class="col-md-4 bl-1 mb-3">
 
@@ -337,45 +339,53 @@
                         </div>
                     </div>
 
-                    <ul class="specs">
-                        <li><strong>@lang('general.category'):</strong> {{ $data_to_pass['category_name'] }}</li>
-                        <li><strong>@lang('general.platform'):</strong> {{ $data_to_pass['platform_name'] }}</li>
-                        <li><strong>@lang('general.developer'):</strong> {{$app_query->developer}}</li>
-                        @if(!empty($app_query->file_size))
-                        <li><strong>@lang('general.file_size'):</strong> {{$app_query->file_size}}</li>@endif
-                        @if($app_query->type=='1')
-                        <li><strong>@lang('general.downloads'):</strong> {{$app_query->counter}}</li>
-                        @else
-                        <li><strong>@lang('general.visits'):</strong> {{$app_query->counter}}</li>@endif
-                        @if(!empty($app_query->license))
-                        <li><strong>@lang('general.license'):</strong> {{$app_query->license}}</li>@endif
-                        <li><strong>@lang('general.last_update'):</strong>
-                            {{\Carbon\Carbon::parse($app_query->updated_at)->translatedFormat('F d, Y')}}</li>
-                    </ul>
-
-                </div>
+              <ul class="specs">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Lastname</th>
+        <th>Values</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>@lang('general.category'):</strong></td>
+        <td>{{ $data_to_pass['category_name'] }}</td>
+     </tr>
+     <tr>
+        <td><strong>@lang('general.platform'):</strong></td>
+        <td>{{ $data_to_pass['platform_name'] }}</td>
+      </tr>
+       <tr>
+        <td><strong>@lang('general.developer'):</strong></td>
+        <td>{{$app_query->developer}}</td>
+      </tr>
+      <tr>
+        <td><strong>@lang('general.file_size'):</strong></td>
+        <td>{{$app_query->file_size}}</td>
+      </tr>
+      <tr>
+        <td><strong>@lang('general.downloads'):</strong></td>
+        <td>{{$app_query->counter}}</td>
+      </tr>
+      <tr>
+        <td><strong>@lang('price'):</strong></td>
+        <td>{{$app_query->license}}</td>
+      </tr>
+     <tr>
+        <td><strong>@lang('general.last_update'):</strong></td>
+        <td>{{\Carbon\Carbon::parse($app_query->updated_at)->translatedFormat('F d, Y')}}</td>
+      </tr>
+    
+    </tbody>
+  </table>
+                
+      </ul>          
+                
+         </div> 
+             
 
                 <!-- Trending apps -->
-                <div class="d-flex top-title justify-content-between mt-md-3" id="popular_apps">
-                    <div>@lang('general.popular_downloads_category')</div>
-                    <div><i class="fas fa-angle-down"></i></div>
-                </div>
-
-                <div class="featured-apps app-page mr-3 ml-3">
-                    <div class="row flex-nowrap mb-1 pb-2">
-                        @foreach ($popular_apps as $app_category)
-
-                        @if(empty($app_category->image))
-                        @php $app_category->image='no_image.png'; @endphp
-                        @endif
-
-                        <div class="col-half p-2 @if($loop->last) mr-0 @endif"><a href="{{ asset($settings['app_base']) }}/{{ $app_category->slug }}"><img src="{{ asset('images') }}/{{$app_category->image}}" class="img-fluid rounded"><span>{{$app_category->title}}</span></a>
-                        </div>
-                        @endforeach
-                    </div>
-
-                </div>
-                <!-- /Trending apps -->
 
                 @if (!is_null($ad[4]))
                 <div class="mt-3">{!! $ad[4] !!}</div>@endif

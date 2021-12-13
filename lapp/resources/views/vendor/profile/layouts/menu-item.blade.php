@@ -99,7 +99,7 @@
     </a>
 </li>
 <li >
-    <a href="{{env("APP_URL")}}" target="_blank">
+    <a href="{{route('home')}}" target="_blank">
         <i class="fas fa-fas fa-external-link-square-alt "></i>
         <span class="ml-5">
             View Website

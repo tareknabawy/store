@@ -21,7 +21,7 @@ $link_base = Cache::rememberForever('settings', function () {
 Route::get('sitemap.xml','SiteMapController@sitemap');
 Route::get('sitemaps/{name}/{page}/sitemap.xml','SiteMapController@viewer');
 
-Route::get('/', 'SiteController@index');
+Route::get('/', 'SiteController@index')->name('home');
 Route::get("/$link_base[category_base]/{slug}", 'SiteController@category')->name('category.show');
 Route::get("/$link_base[platform_base]/{slug}", 'SiteController@platform')->name('platform.show');
 Route::get("/$link_base[app_base]/random", 'SiteController@random')->name('random.show');

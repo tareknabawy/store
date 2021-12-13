@@ -195,7 +195,7 @@ class SubmissionController extends Controller
         $submission->delete();
 
         // Redirect to list of submissions
-        return redirect()->route('admin.submissions.index')->with('success', __('admin.data_deleted'));
+        return redirect()->route('submissions.index')->with('success', __('admin.data_deleted'));
     }
 
 }

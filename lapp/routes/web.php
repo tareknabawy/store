@@ -100,7 +100,7 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth','CheckRole:ADMIN'])-
     Route::get('/search', 'ApplicationController@search');
     Route::get('/account_settings', 'HomeController@accountsettingsform');
     Route::post('/account_settings', 'HomeController@accountsettings')->name('accountsettings');
-    Route::get('/', 'ApplicationController@index');
+    Route::get('/', 'ApplicationController@index')->name('index');
 });
 
 

@@ -106,14 +106,16 @@
         </span> 
     </a>
 </li>
+@if(auth()->user()->power=="ADMIN")
 <li >
-    <a href="{{env("APP_URL")}}/admin" >
+    <a href="{{route('admin.index')}}" >
         <i class="fas fa-fas fa-cogs "></i>
         <span class="ml-5">
             Admin Panel
         </span> 
     </a>
 </li>
+@endif
 
 
 

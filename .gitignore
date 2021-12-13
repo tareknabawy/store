@@ -1,4 +1,3 @@
-*.log
 /node_modules
 /public/hot
 /public/storage
@@ -18,8 +17,7 @@ error_log
 /lapp/public/hot
 /lapp/public/storage
 /lapp/storage/*.key
-/lapp/vendor
-/lapp/vendor
+/lapp/vendor 
 /lapp/.env
 /lapp/.env.backup
 /lapp/.phpunit.result.cache

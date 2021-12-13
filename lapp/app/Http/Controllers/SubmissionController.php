@@ -177,7 +177,7 @@ class SubmissionController extends Controller
         Cache::flush();
 
         // Redirect to application edit page
-        return redirect()->route('admin.submissions.index')->with('success', __('admin.data_added'));
+        return redirect()->route('submissions.index')->with('success', __('admin.data_added'));
     }
 
     /** Destory */
@@ -195,7 +195,7 @@ class SubmissionController extends Controller
         $submission->delete();
 
         // Redirect to list of submissions
-        return redirect()->route('submissions.index')->with('success', __('admin.data_deleted'));
+        return redirect()->route('admin.submissions.index')->with('success', __('admin.data_deleted'));
     }
 
 }

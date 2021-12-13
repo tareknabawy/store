@@ -69,7 +69,7 @@ Route::prefix('user/')->name('user.')->middleware(['auth'])->group(function(){
 });
 
 //,'CheckRole:ADMIN'
-Route::prefix('admin/')->name('admin.')->middleware(['auth','CheckRole:ADMIN'])->group(function(){
+Route::prefix('admin/')->middleware(['auth','CheckRole:ADMIN'])->group(function(){
     Route::get('/settings/clear_cache', 'SettingController@clear_cache');
     Route::get('/platforms/order', 'PlatformController@order');
     Route::get('/categories/order', 'CategoryController@order');
@@ -100,7 +100,7 @@ Route::prefix('admin/')->name('admin.')->middleware(['auth','CheckRole:ADMIN'])-
     Route::get('/search', 'ApplicationController@search');
     Route::get('/account_settings', 'HomeController@accountsettingsform');
     Route::post('/account_settings', 'HomeController@accountsettings')->name('accountsettings');
-    Route::get('/', 'ApplicationController@index')->name('index');
+    Route::get('/', 'ApplicationController@index')->name('admin.index');
 });
 
 

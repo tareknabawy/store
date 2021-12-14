@@ -28,3 +28,12 @@
 <link href="{{ asset('css/all.css') }}" rel="stylesheet">
 
 {!!$settings['before_head_tag']!!}
+<style type="text/css">
+    .app-box:hover .download-btn{
+        right: 0px!important;
+    }
+    .download-btn{
+        transition: .3s all ease-in-out;
+        right: -60px;
+    }
+</style>

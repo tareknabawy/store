@@ -71,8 +71,14 @@
     @php $app->image='no_image.png'; @endphp
     @endif
 
-    <div class="col-md-12 col-12">
+    <div class="col-md-12 col-12 app-box" style="position: relative;overflow: hidden;">
         <div class="d-flex @if($loop->last) mb-0 pb-0 border-0 @endif">
+
+       
+                            <div style="position:absolute; right: -150px;top: 0px;transition: .3s all ease-in-out;" class="download-btn">
+                                <a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}" class="btn btn-primary btn-sm" style="font-size:14px;padding: 10px  23px;">Download</a>
+                            </div>
+
             <div class="pr-2"><a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}"><img
                         src="{{ asset('images') }}/{{ $app->image }}" class="image rounded"></a></div>
             <div class="box"><a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}" class="title">{{ $app->title }}</a>

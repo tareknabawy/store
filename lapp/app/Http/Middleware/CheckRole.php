@@ -16,9 +16,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next,$roles)
     { 
-        if (auth()->check() && in_array(auth()->user()->power, explode('|', $roles))  ) {
+        if (auth()->check() && in_array(auth()->user()->power, explode('|', $roles))  && auth()->user()->blocked==0) {
             return $next($request);
-        }elseif(auth()->check() && auth()->user()->power=="USER"){
+        }elseif(auth()->check() && auth()->user()->power=="USER" && auth()->user()->blocked==0 ){
             return redirect()->route('user.profile');
         }
         //abort(403);

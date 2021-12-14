@@ -76,6 +76,8 @@ Route::prefix('admin/')->middleware(['auth','CheckRole:ADMIN'])->group(function(
     Route::get('/pages/order', 'PageController@order');
     Route::get('/sliders/status/{id}', 'SliderController@status');
     Route::post('/topics/details', 'TopicController@details');
+    Route::resource('/users', 'UserController');
+    Route::post('/user-block/{user}','UserController@block')->name('user-block');
     Route::resource('/apps', 'ApplicationController');
     Route::resource('/news', 'NewsController');
     Route::resource('/comments', 'CommentController');

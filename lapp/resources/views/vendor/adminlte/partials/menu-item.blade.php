@@ -309,6 +309,15 @@
     </a>
 </li>
 
+<li class="{{ Request::is('admin/user*')  ? 'active' : '' }}">
+    <a href="{{ route('users.index') }}">
+        <i class="fas fa-user "></i>
+        <span class="ml-5">
+           Users
+        </span>
+    </a>
+</li>
+
 <li class="{{ Request::is('admin/comments*')  ? 'active' : '' }}">
     <a href="{{ asset('/admin/comments') }}">
         <i class="fas fa-comments"></i>

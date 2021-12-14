@@ -86,10 +86,13 @@ class ApplicationController extends Controller
     }
 
     /** Index */
-    public function index()
+    public function index(Request $request)
     {
         // List of latest applications
-        $apps = Application::join('categories', 'applications.category', '=', 'categories.id')
+        $apps = Application::join('categories', 'applications.category', '=', 'categories.id')->where(function($q){
+            if(request()->get('owner_id')!=null)
+                $q->where('owner_id',request()->get('owner_id'));
+        })
             ->join('platforms', 'applications.platform', '=', 'platforms.id')
             ->select('applications.*', 'categories.title AS category_title', 'platforms.title AS platform_title')
             ->orderBy('id', 'desc')->paginate(15);

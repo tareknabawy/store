@@ -74,7 +74,7 @@ class SiteMapController extends Controller
             'page'=>'required|integer|min:0,max:10000'
     ]);
         $urls  = [];
-        $items = $this->data->where('name',$request->name)->first()['data']->paginate();
+        $items = $this->data->where('name',$request->name)->first()['data']->paginate($this->items_per_page);
         $route = $this->data->where('name',$request->name)->first()['show_route_name'];
 		
     foreach($items as $item){

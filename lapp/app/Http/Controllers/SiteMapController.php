@@ -54,7 +54,6 @@ class SiteMapController extends Controller
                 'show_route_name'=>"tag.show",
                 'data'=>\DB::table('tagging_tags')->whereNotNull('id'),
             ],
-            
         ]);
     }
     public function sitemap_init(Request $request){

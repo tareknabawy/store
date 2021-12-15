@@ -6,6 +6,7 @@
 /images/*
 /screenshots/*
 *.zip
+*.log
 .env
 .env.backup
 .phpunit.result.cache

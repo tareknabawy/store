@@ -191,10 +191,16 @@ class ApplicationController extends Controller
             $app->must_have = '1';
         }
 
+        
         $app->save();
-
         $tags = explode(",", $request->get('tags'));
         $app->tag($tags);
+        foreach($app->tags as $tag){
+            \App\TaggingTag::where('id',$tag->id)->whereNull('created_at')->whereNull('updated_at')->update(['created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')]); 
+        }
+
+
+        
 
         if ($request->get('slug') == null) {
             $app->slug = null;
@@ -273,6 +279,9 @@ class ApplicationController extends Controller
 
         $tags = explode(",", $request->get('tags'));
         $app->tag($tags);
+        foreach($app->tags as $tag){
+            \App\TaggingTag::where('id',$tag->id)->whereNull('created_at')->whereNull('updated_at')->update(['created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')]); 
+        }
 
         if ($request->get('featured') == null) {
             $app->featured = '0';

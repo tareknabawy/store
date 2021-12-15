@@ -54,6 +54,12 @@ class SiteMapController extends Controller
                 'show_route_name'=>"topicitem.show",
                 'data'=>\App\TopicItem::query(),
             ],
+            [
+                'name'=>"tags",
+                'index_route_name'=>"tags.index",
+                'show_route_name'=>"tag.show",
+                'data'=>\DB::table('tagging_tags')->whereNotNull('id'),
+            ],
             
         ]);
     }
@@ -84,9 +90,12 @@ class SiteMapController extends Controller
             
 			
 	$url='<url>
-		<loc>'.route($route,$item->slug).'</loc>
-		<lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod>';
-
+		<loc>'.route($route,$item->slug).'</loc>';
+    if(isset($item->updated_at))
+		$url.='<lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod>';
+    elseif(isset($item->created_at))
+        $url.='<lastmod>'.gmdate(DateTime::W3C, strtotime($item->created_at)).'</lastmod>';
+    
     if(isset($item->image) && $item->image!=null)
         $url.='<image:image>
             <image:loc>'.env('APP_URL').'/images/'.$item->image.'</image:loc>

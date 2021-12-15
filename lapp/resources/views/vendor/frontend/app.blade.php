@@ -1,8 +1,15 @@
 @extends('frontend::page')
+@push('tags_header')
+    <meta property="article:published_time" content="{{$app_query->created_at}}" />
+    <meta property="article:modified_time" content="{{$app_query->updated_at}}" />
+@endpush
+@section('styles')
 
 @push('assets_header')
 <!-- Lity CSS -->
 <link href="{{ asset('css/simpleLightbox.min.css') }}" rel="stylesheet">
+
+
 @endpush
 
 @push('assets_footer')

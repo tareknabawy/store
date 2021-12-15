@@ -39,6 +39,7 @@
 @endif
 @endif
 @endforeach
+@stack('tags_header')
 @else
     <title>{{ config('app.name') }}</title>
 @endif

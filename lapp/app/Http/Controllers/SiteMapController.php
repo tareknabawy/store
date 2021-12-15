@@ -49,12 +49,6 @@ class SiteMapController extends Controller
                 'data'=>\App\News::query(),
             ],
             [
-                'name'=>"topicitems",
-                'index_route_name'=>"topicitems.index",
-                'show_route_name'=>"topicitem.show",
-                'data'=>\App\TopicItem::query(),
-            ],
-            [
                 'name'=>"tags",
                 'index_route_name'=>"tags.index",
                 'show_route_name'=>"tag.show",
@@ -95,7 +89,7 @@ class SiteMapController extends Controller
 		$url.='<lastmod>'.gmdate(DateTime::W3C, strtotime($item->updated_at)).'</lastmod>';
     elseif(isset($item->created_at))
         $url.='<lastmod>'.gmdate(DateTime::W3C, strtotime($item->created_at)).'</lastmod>';
-    
+
     if(isset($item->image) && $item->image!=null)
         $url.='<image:image>
             <image:loc>'.env('APP_URL').'/images/'.$item->image.'</image:loc>

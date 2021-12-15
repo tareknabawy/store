@@ -279,6 +279,7 @@ class ApplicationController extends Controller
 
         $tags = explode(",", $request->get('tags'));
         $app->tag($tags);
+        
         foreach($app->tags as $tag){
             \App\TaggingTag::where('id',$tag->id)->whereNull('created_at')->whereNull('updated_at')->update(['created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')]); 
         }

@@ -15,7 +15,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 error_log
-/lapp/storage/framework/cache/data/*
+/lapp/storage/framework/cache/data/
 /lapp/node_modules
 /lapp/public/hot
 /lapp/public/storage

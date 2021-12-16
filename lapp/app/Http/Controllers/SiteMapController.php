@@ -119,7 +119,7 @@ class SiteMapController extends Controller
     public function generator($items=[]){
         $urls=[];
         foreach($items as $item){
-            for($i=0; $i< ceil($item['data']->count()/$this->items_per_page);$i++ ){
+            for($i=1; $i< ceil($item['data']->count()/$this->items_per_page);$i++ ){
 				
 				
 				 

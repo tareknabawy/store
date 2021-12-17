@@ -49,7 +49,7 @@
                     <div class="col-4 mb-2">
                         <div class="d-flex flex-sm-row flex-column">
                             <div class="pr-2 mb-1"><a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}"><img
-                                        src="{{ asset('images') }}/{{ $app->image }}" class="image rounded"></a></div>
+                                        src="{{ asset('images') }}/{{ $app->image }}" class="image rounded" alt="{{ $app->title }}"></a></div>
                             <div class="box"><a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}"
                                     class="title">{{ $app->title }}</a>
 

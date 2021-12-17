@@ -37,4 +37,5 @@
         transition: .3s all ease-in-out;
         right: -60px;
     }
+    
 </style>

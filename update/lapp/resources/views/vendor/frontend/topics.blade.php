@@ -34,7 +34,7 @@
                     <div class="col-md-6 col-12 mb-3 @if ($key++ % 2 != 1) pr-md-2 @else pl-md-2 @endif">
 
                         <a href="{{ asset($settings['topic_base']) }}/{{ $topics->slug }}">
-                            <img src="{{ asset('images') }}/topics/{{ $topics->image}}" class="img-fluid" alt="">
+                            <img src="{{ asset('images') }}/topics/{{ $topics->image}}" class="img-fluid" alt="{{ $topics->title}}">
                         </a>
                         <div class="topic-box">
                             <a href="{{ asset($settings['topic_base']) }}/{{ $topics->slug }}">

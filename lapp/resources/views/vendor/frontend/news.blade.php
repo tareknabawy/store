@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <img src="{{ asset('images') }}/news/{{ $page_query->image}}" class="img-fluid mt-md-3" alt="">
+                <img src="{{ asset('images') }}/news/{{ $page_query->image}}" class="img-fluid mt-md-3" alt="{{$page_query->title}}">
 
                 {!! $page_query->details !!}
 
@@ -58,7 +58,7 @@
 
                     @foreach ($other_news as $key => $news)
                     <div class="col-md-6 col-12 mb-3 @if ($key++ % 2 != 1) pr-md-2 @else pl-md-2 @endif">
-                        <a href="{{ asset($settings['news_base']) }}/{{ $news->slug }}"><img src="{{ asset('images') }}/news/{{$news->image}}" class="img-fluid"></a>
+                        <a href="{{ asset($settings['news_base']) }}/{{ $news->slug }}"><img src="{{ asset('images') }}/news/{{$news->image}}" class="img-fluid" alt"{{$news->title}}"></a>
                         <a href="{{ asset($settings['news_base']) }}/{{ $news->slug }}"><span>{{$news->title}}</span></a>
                     </div>
                     @endforeach

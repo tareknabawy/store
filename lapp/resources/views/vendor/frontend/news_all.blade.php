@@ -36,7 +36,7 @@
                             <a href="{{ asset($settings['news_base']) }}/{{ $news->slug }}">
                                 <div class="news-cover"></div>
                                 <h4>{{ $news->title}}</h4>
-                                <img src="{{ asset('images') }}/news/{{ $news->image}}" class="img-fluid" alt="">
+                                <img src="{{ asset('images') }}/news/{{ $news->image}}" class="img-fluid" alt="{{ $news->title}}">
                             </a>
                         </div>
                     </div>

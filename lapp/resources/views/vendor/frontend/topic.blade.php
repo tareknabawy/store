@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <img src="{{ asset('images') }}/topics/{{ $topic_query->image}}" class="img-fluid mt-3" alt="">
+                <img src="{{ asset('images') }}/topics/{{ $topic_query->image}}" class="img-fluid mt-3" alt="{!! $topic_query->title !!}">
 
                 <h3 class="topic-description">{!! $topic_query->description !!}</h3>
 
@@ -72,7 +72,7 @@
                                 <span class="license">{{ $app_license[$app] }}</span>
                                 @endif
 
-                                <a href="{{ asset($settings['app_base']) }}/{{ $app_slug[$app] }}"><img src="{{ asset('images') }}/{{ $app_image[$app] }}" class="rounded"></a>
+                                <a href="{{ asset($settings['app_base']) }}/{{ $app_slug[$app] }}"><img src="{{ asset('images') }}/{{ $app_image[$app] }}" alt="+++++++++++++" class="rounded"></a>
 
                                 <div class="apps mb-2">
                                     <div class="stars">

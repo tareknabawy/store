@@ -49,14 +49,16 @@
                 {!! $breadcrumb_schema_data->toScript() !!}
                 @endif
 
-                @endif
+                 @endif
 
                 <div class="d-flex flex-row app-info">
 
-                    <div class="mr-2"><img src="{{ asset('images') }}/{{$app_query->image}}" class="float-left pimage">
+                    <div class="mr-2">
+                        
+                        <img src="{{ asset('images') }}/{{$app_query->image}}" href="{{ asset('images') }}/{{$app_query->image}}" class="float-left pimage" alt="{{$app_query->title}}">
+                        
                     </div>
-
-                    <div>
+                       <div>
                         <h2>{{$app_query->title}}</h2>
 
                         <span class="voteinfo"></span>
@@ -75,7 +77,6 @@
 
                     </div>
                 </div>
-
                 <div class="container mt-3 smi">
                     <div class="row">
                         <div class="col text-center p-2 facebook"><a onclick="sm_share('https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}','Facebook','600','300');" href="javascript:void(0);"><i class="fab fa-facebook-f ml-2"></i> <span class="d-none d-lg-inline-block">Facebook</span></a></div>
@@ -97,7 +98,7 @@
                         <div id="screenshot-main">
 
                             @foreach($screenshot_data as $image_name)
-                            <a href="{{ asset('screenshots') }}/{{$image_name}}"><img src="{{ asset('screenshots') }}/{{$image_name}}" class="mr-1"></a>
+                            <a href="{{ asset('screenshots') }}/{{$image_name}}"><img src="{{ asset('screenshots') }}/{{$image_name}}" class="mr-1" alt="Ccreenshot App {{$app_query->title}}"></a>
                             @endforeach
 
                         </div>
@@ -271,7 +272,7 @@
                             <a href="{{ asset($settings['news_base']) }}/{{ $news->slug }}">
                                 <div class="news-cover"></div>
                                 <h4>{{ $news->title}}</h4>
-                                <img src="{{ asset('images') }}/news/{{ $news->image}}" class="img-fluid" alt="">
+                                <img src="{{ asset('images') }}/news/{{ $news->image}}" class="img-fluid" alt="{{ $news->title}}">
                             </a>
                         </div>
                     </div>
@@ -298,7 +299,10 @@
                         @php $app_category->image='no_image.png'; @endphp
                         @endif
 
-                        <div class="col-half p-2 @if($loop->last) mr-0 @endif"><a href="{{ asset($settings['app_base']) }}/{{ $app_category->slug }}"><img src="{{ asset('images') }}/{{$app_category->image}}" class="img-fluid rounded"><span>{{$app_category->title}}</span></a>
+                        <div class="col-half p-2 @if($loop->last) mr-0 @endif">
+                            
+                            <a href="{{ asset($settings['app_base']) }}/{{ $app_category->slug }}"><img src="{{ asset('images') }}/{{$app_category->image}}" class="img-fluid rounded " alt="{{ $app_category->slug }}" >
+                            <span>{{$app_category->title}}</span></a>
                         </div>
                         @endforeach
                     </div>
@@ -342,7 +346,7 @@
                         @lang('general.qr_visit')
                         @endif
                         <div class="qr-code">
-                            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->margin(0)->size(125)->generate(url()->current())); !!} ">
+                            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->margin(0)->size(125)->generate(url()->current())); !!}" alt="{{$app_query->title}}">
                         </div>
                     </div>
 

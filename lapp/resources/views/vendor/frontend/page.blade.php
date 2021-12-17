@@ -3,7 +3,8 @@
 <head>
     @include('frontend::inc.head')
 </head>
-<body>
+    <script type="text/javascript"> function selectAll() { document.form1.demo.focus(); document.form1.demo.select(); } </script> 
+<body> 
 
 @include('frontend::inc.header')
 

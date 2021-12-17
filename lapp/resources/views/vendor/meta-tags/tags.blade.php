@@ -2,6 +2,7 @@
 @foreach(config('meta-tags.available') as $key => $option)
 @if (isset($tags[$key]))
 @if($key === 'canonical' && $tags[$key])
+@stack('tags_header')
     <link rel="canonical" href="{{ url($tags[$key]) }}"/>
 @elseif($key === 'title')
     <title>{{ $tags[$key] }}</title>
@@ -39,7 +40,6 @@
 @endif
 @endif
 @endforeach
-@stack('tags_header')
 @else
     <title>{{ config('app.name') }}</title>
 @endif

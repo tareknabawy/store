@@ -69,6 +69,8 @@
     <script src="{{ asset('vendor/adminlte/vendor/summernote/summernote.js') }}"></script>
     <!-- AdminLTE -->
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
-
+    <script type="text/javascript">
+        $('label .text-danger').parent().parent().find('input.form-control').attr('required','required');
+    </script>
 </body>
 </html>

@@ -71,6 +71,7 @@
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
     <script type="text/javascript">
         $('label .text-danger').parent().parent().find('input.form-control').attr('required','required');
+        $('label .text-danger').parent().parent().find('select').attr('required','required');
     </script>
 </body>
 </html>

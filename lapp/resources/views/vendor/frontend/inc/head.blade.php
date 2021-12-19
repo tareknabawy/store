@@ -1,5 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 
 {!!
 \MetaTag::setPath()
@@ -26,6 +28,7 @@
 <script src="{{ asset('js/other.js') }}?v1.4"></script>
 @stack('assets_header')
 <!-- Font Awesome -->
+<!-- Font Awesome -->
 <link href="{{ asset('css/all.css') }}" rel="stylesheet">
 
 {!!$settings['before_head_tag']!!}
@@ -37,5 +40,21 @@
         transition: .3s all ease-in-out;
         right: -60px;
     }
+    .container > .row:nth-of-type(1){
+    	-background: #fff;
+    	-padding-top: 12px;
+    	-padding-bottom: 12px;
+    }
+    body{
+    	-background: #edf1f3
+    }
     
 </style>
+
+
+
+
+
+
+
+

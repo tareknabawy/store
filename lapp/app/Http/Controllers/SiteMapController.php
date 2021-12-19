@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DateTime;
 class SiteMapController extends Controller
 {
-    public $items_per_page = 100 ;
+    public $items_per_page = 300 ;
     public $data;
 	
     public function __construct()

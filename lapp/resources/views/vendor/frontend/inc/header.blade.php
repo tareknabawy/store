@@ -11,12 +11,15 @@
                 <div class="col-6 d-flex justify-content-end align-items-center">
                     <div class="headersm">
 
-                        @if(auth()->check())
-                        <a href="{{route('user.profile')}}" ><i class="fas fa-user"></i></a>
-                        @endif
                         @if(!auth()->check())
-                        <a href="{{route('register')}}" ><i class="fas fa-user-plus" style="color: #b78b1d;"></i></a>
+                        <a href="{{route('login')}}" class="btn btn-outline-success border" style="font-size: 12px;padding: 6px 20px;margin-top: 0px!important"> Login </a>
                         @endif
+                     {{--    @if(!auth()->check())
+                        <a href="{{route('register')}}" ><i class="fas fa-user-plus" style="color: #b78b1d;"></i></a>
+                        @endif --}}
+
+                        {{-- <a href="{{route('user.profile')}}" ><i class="fas fa-user"></i></a> --}}
+                        <a href="{{auth()->check()?route('user.submit-app'):route('register')}}" class="btn btn-primary" style="font-size: 12px;padding: 6px 20px;margin-top: 0px!important"> <span class="fas fa-upload"></span> Submit App </a>
 
                         <a href="javascript:void(0);" onclick="SearchBox()"><i class="fas fa-search"></i></a>
                         @if (!empty($settings['facebook_page']))<a href="{{$settings['facebook_page']}}" target="_blank"><i class="fab fa-facebook-f"></i></a>@endif

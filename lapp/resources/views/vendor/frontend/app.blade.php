@@ -2,6 +2,9 @@
 @push('tags_header')
     <meta property="article:published_time" content="{{$app_query->created_at}}" />
     <meta property="article:modified_time" content="{{$app_query->updated_at}}" />
+    <meta name="author" content="{{$app_query->developer}}">
+    <meta name="page_id" content="{{$app_query->id}}">
+   
 @endpush
 @section('styles')
 
@@ -55,7 +58,7 @@
 
                     <div class="mr-2">
                         
-                        <img src="{{ asset('images') }}/{{$app_query->image}}" href="{{ asset('images') }}/{{$app_query->image}}" class="float-left pimage" alt="{{$app_query->title}}">
+                        <img src="{{ asset('images') }}/{{$app_query->image}}" href="{{ asset('images') }}/{{$app_query->image}}" class="float-left pimage" alt="{{$app_query->slug}}">
                         
                     </div>
                        <div>
@@ -396,7 +399,27 @@
          </div> 
              
 
-                <!-- Trending apps -->
+                     <!-- Trending apps -->
+                <div class="d-flex top-title justify-content-between mt-md-3" id="popular_apps">
+                    <div>@lang('general.popular_downloads_category')</div>
+                    <div><i class="fas fa-angle-down"></i></div>
+                </div>
+
+                <div class="featured-apps app-page mr-3 ml-3">
+                    <div class="row flex-nowrap mb-1 pb-2">
+                        @foreach ($popular_apps as $app_category)
+
+                        @if(empty($app_category->image))
+                        @php $app_category->image='no_image.png'; @endphp
+                        @endif
+
+                        <div class="col-half p-2 @if($loop->last) mr-0 @endif"><a href="{{ asset($settings['app_base']) }}/{{ $app_category->slug }}"><img src="{{ asset('images') }}/{{$app_category->image}}" class="img-fluid rounded" alt="{{$app_category->title}}"><span>{{$app_category->title}}</span></a>
+                        </div>
+                        @endforeach
+                    </div>
+
+                </div>
+                <!-- /Trending apps -->
 
                 @if (!is_null($ad[4]))
                 <div class="mt-3">{!! $ad[4] !!}</div>@endif

@@ -18,8 +18,8 @@ $link_base = Cache::rememberForever('settings', function () {
 
 });
 
-Route::get('sitemap.xml','SiteMapController@sitemap');
-Route::get('sitemaps/{name}/{page}/sitemap.xml','SiteMapController@viewer');
+Route::get('sitemap.xml','SiteMapFinalController@sitemap');
+Route::get('sitemaps/{name}/{page}/sitemap.xml','SiteMapFinalController@viewer');
 
 Route::get('/', 'SiteController@index')->name('home');
 Route::get("/$link_base[category_base]/{slug}", 'SiteController@category')->name('category.show');

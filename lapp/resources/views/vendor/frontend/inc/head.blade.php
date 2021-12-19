@@ -34,7 +34,7 @@
 {!!$settings['before_head_tag']!!}
 <style type="text/css">
     .app-box:hover .download-btn{
-        right: 0px!important;
+        right: 27px!important;
     }
     .download-btn{
         transition: .3s all ease-in-out;

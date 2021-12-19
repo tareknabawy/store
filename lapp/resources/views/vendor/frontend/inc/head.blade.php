@@ -41,12 +41,19 @@
         right: -60px;
     }
     .container > .row:nth-of-type(1){
-    	-background: #fff;
-    	-padding-top: 12px;
-    	-padding-bottom: 12px;
+    	background: #fff;
+    	padding-top: 12px;
+    	padding-bottom: 12px;
+    }
+    footer .container > .row:nth-of-type(1){
+        background-color: unset!important;
+        color: unset!important;
     }
     body{
-    	-background: #edf1f3
+    	background: #edf1f3
+    }
+    .nav-scroller a:last-child{
+        padding-right: 8px!important
     }
     
 </style>

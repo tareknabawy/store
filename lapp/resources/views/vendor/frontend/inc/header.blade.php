@@ -5,11 +5,11 @@
     <div class="container">
         <header class="site-header pt-2 pb-2">
             <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-6">
+                <div class="col-4 pr-0">
                     <h1 class="site-header-logo"><a href="{{ asset('') }}">@if ($settings['use_text_logo'] == '0')<img src="/images/logo.png" alt="{{$settings['site_title']}}" class="img-fluid">@else{{$settings['site_title']}}@endif</a></h1>
                 </div>
-                <div class="col-6 d-flex justify-content-end align-items-center">
-                    <div class="headersm">
+                <div class="col-8 pl-0 d-flex justify-content-end align-items-center">
+                    <div class="headersm py-2 py-lg-0">
 
                         @if(!auth()->check())
                         <a href="{{route('login')}}" class="btn btn-outline-success border" style="font-size: 12px;padding: 6px 20px;margin-top: 0px!important"> Login </a>
@@ -19,13 +19,13 @@
                         @endif --}}
 
                         {{-- <a href="{{route('user.profile')}}" ><i class="fas fa-user"></i></a> --}}
-                        <a href="{{auth()->check()?route('user.submit-app'):route('register')}}" class="btn btn-primary" style="font-size: 12px;padding: 6px 20px;margin-top: 0px!important"> <span class="fas fa-upload"></span> Submit App </a>
+                        <a href="{{auth()->check()?route('user.submit-app'):route('register')}}" class="btn btn-primary px-3 px-lg-4" style="font-size: 12px;padding: 6px 20px;margin-top: 0px!important"> <span class="fas fa-upload"></span> Submit App </a>
 
-                        <a href="javascript:void(0);" onclick="SearchBox()"><i class="fas fa-search"></i></a>
-                        @if (!empty($settings['facebook_page']))<a href="{{$settings['facebook_page']}}" target="_blank"><i class="fab fa-facebook-f"></i></a>@endif
-                        @if (!empty($settings['twitter_account']))<a href="https://www.twitter.com/{{$settings['twitter_account']}}" target="_blank"><i class="fab fa-twitter"></i></a>@endif
-                        @if ($settings['random_app_link'] == '1')<a href="{{ asset($settings['app_base'].'/random') }}"><i class="fas fa-random"></i></a>@endif
-                        @if (!empty($settings['show_rss_feed']))<a href="{{ asset('rss') }}" target="_blank"><i class="fas fa-rss"></i></a>@endif
+                        <a href="javascript:void(0);" onclick="SearchBox()" class="d-none d-lg-inline-block"><i class="fas fa-search "></i></a>
+                        @if (!empty($settings['facebook_page']))<a href="{{$settings['facebook_page']}}" target="_blank"  class="d-none d-lg-inline-block" ><i class="fab fa-facebook-f"></i></a>@endif
+                        @if (!empty($settings['twitter_account']))<a href="https://www.twitter.com/{{$settings['twitter_account']}}" target="_blank"  class="d-none d-lg-inline-block"><i class="fab fa-twitter"></i></a>@endif
+                        @if ($settings['random_app_link'] == '1')<a href="{{ asset($settings['app_base'].'/random') }}"  class="d-none d-lg-inline-block"><i class="fas fa-random"></i></a>@endif
+                        @if (!empty($settings['show_rss_feed']))<a href="{{ asset('rss') }}" target="_blank"  class="d-none d-lg-inline-block"><i class="fas fa-rss"></i></a>@endif
 
                     </div>
                 </div>
@@ -37,7 +37,7 @@
 
 <!-- Nav Container -->
 <div class="nav-container nav-bg-{{$settings['navbar_color']}}">
-    <div class="container">
+    <div class="container px-0">
         <div class="nav-scroller">
             <nav class="nav d-flex">
                 <a class="pr-2 pt-2" href="{{ asset('') }}"><i class="fa fa-home"></i> @lang('general.homepage')</a>

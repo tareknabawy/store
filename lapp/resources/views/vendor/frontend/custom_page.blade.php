@@ -20,11 +20,10 @@
                 <div class="breadcrumbs mb-3">
                     <a href="{{ asset('') }}">@lang('general.homepage')</a> » <a href="{{url()->current()}}">{{$page_query->title}}</a>
                 </div>
-
+                
                 @if ($settings['schema_breadcrumbs'] == '1')
-                {!! $breadcrumb_schema_data->toScript() !!}
+                {!! str_replace('\\', '', $breadcrumb_schema_data->toScript()) !!}
                 @endif
-
                 @endif
 
                 <h2 class="mt-0">{{$page_query->title}}</h2>

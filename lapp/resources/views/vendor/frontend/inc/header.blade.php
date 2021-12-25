@@ -1,5 +1,4 @@
 {!!$settings['after_head_tag']!!}
-
 <!-- Header Container -->
 <div class="header-container">
     <div class="container">
@@ -34,7 +33,6 @@
     </div>
 </div>
 <!-- /Header Container -->
-
 <!-- Nav Container -->
 <div class="nav-container nav-bg-{{$settings['navbar_color']}}">
     <div class="container px-0">
@@ -51,7 +49,6 @@
     </div>
 </div>
 <!-- /Nav Container -->
-
 <!-- Search Box -->
 <div id="SearchBox" class="overlaymenu">
     <a href="javascript:void(0)" class="closebtn" onclick="closeSearchBox()">&times;</a>
@@ -89,7 +86,6 @@
     </div>
 </div>
 <!-- /Search Box -->
-
 @if (!is_null($ad[1]))
 @php echo '<div class="container text-center mt-3">'.$ad[1].'</div>'; @endphp
 @endif

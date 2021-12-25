@@ -31,9 +31,8 @@
                 </div>
 
                 @if ($settings['schema_breadcrumbs'] == '1')
-                {!! $breadcrumb_schema_data->toScript() !!}
+                {!! str_replace('\\', '', $breadcrumb_schema_data->toScript()) !!}
                 @endif
-
                 @endif
 
                 <h2 class="mb-0 mb-md-3">{!! $topic_query->title !!}</h2>
@@ -48,7 +47,7 @@
                     </div>
                 </div>
 
-                <img src="{{ asset('images') }}/topics/{{ $topic_query->image}}" class="img-fluid mt-3" alt="{!! $topic_query->title !!}">
+                <img src="{{ asset('images') }}/topics/{{ $topic_query->image}}" loading="lazy" class="img-fluid mt-3" alt="5555555555555">
 
                 <h3 class="topic-description">{!! $topic_query->description !!}</h3>
 
@@ -72,7 +71,7 @@
                                 <span class="license">{{ $app_license[$app] }}</span>
                                 @endif
 
-                                <a href="{{ asset($settings['app_base']) }}/{{ $app_slug[$app] }}"><img src="{{ asset('images') }}/{{ $app_image[$app] }}" alt="+++++++++++++" class="rounded"></a>
+                                <a href="{{ asset($settings['app_base']) }}/{{ $app_slug[$app] }}"><img src="{{ asset('images') }}/{{ $app_image[$app] }}" loading="lazy"  class="rounded" alt="6666666666666" ></a>
 
                                 <div class="apps mb-2">
                                     <div class="stars">
@@ -86,7 +85,7 @@
                             </div>
 
                             <div class="box">
-                                <a href="{{ asset($settings['app_base']) }}/{{ $app_slug[$app] }}" class="title">{{ $index+1 }}. {{ $app_title[$app] }}</a>
+                                <a href="{{ asset($settings['app_base']) }}/{{ $app_slug[$app] }}" loading="lazy" class="title">{{ $index+1 }}. {{ $app_title[$app] }}</a>
 
                                 <span class="description">{{ $app_description[$app] }}</span>
 

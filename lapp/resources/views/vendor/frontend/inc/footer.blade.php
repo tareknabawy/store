@@ -1,28 +1,29 @@
 @if (!is_null($ad[2]))
 @php echo '<div class="container text-center mb-3">'.$ad[2].'</div>'; @endphp
 @endif
-
 <!-- Footer Container -->
 <div class="footer-container">
-
-    <!-- Footer -->
-    <footer class="page-footer">
-
-        <!-- Footer Links -->
-        <div class="container">
-
-            <!-- Grid row -->
-            <div class="row">
-
-                <!-- Grid column -->
+<!-- Footer -->
+<footer class="page-footer">
+<!-- Footer Links -->
+<div class="container">
+<!-- Grid row -->
+<div class="row">
+<!-- Grid column -->
                 <div class="col-md-3 mx-auto">
                     <strong>{{$settings['site_title']}}</strong><br /><br />
                     {{$settings['site_description']}}<br /><br />
                     @if ($settings['show_submission_form'] == '1')
-                    <a href="{{ asset('submit-app') }}" class="submit-app">@lang('general.submit_your_app')</a>
+                    
+                    
+<a href="{{auth()->check()?route('user.submit-app'):route('register')}}" class="btn btn-primary px-3 px-lg-4" class="submit-app" style="font-size: 12px;padding: 6px 20px;margin-top: 0px!important"> <span class="fas fa-upload"></span> Submit App </a><br /><br />
+                    
+                    
                     @endif
                     @if (!empty($settings['facebook_page']))<a href="{{$settings['facebook_page']}}" target="_blank"><i class="fab fa-facebook-f"></i></a>@endif
                     @if (!empty($settings['twitter_account']))<a href="{{$settings['twitter_account']}}" target="_blank"><i class="fab fa-twitter"></i></a>@endif
+                    <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://t.me/apkstoretv" target="_blank"><i class="fab fa-telegram"></i></a>
                 </div>
                 <!-- /Grid column -->
 
@@ -70,7 +71,8 @@
         <!-- /Footer Links -->
 
         <!-- Copyright Message -->
-        <div class="footer-copyright text-center py-2">© {{date('Y')}} @lang('general.copyright') -
+        <div class="footer-copyright text-center py-2"> @lang('general.copyright') © {{date('Y')}} -
+        
             <a href="#"> {{$settings['site_title']}}</a>
         </div>
         <!-- /Copyright Message -->

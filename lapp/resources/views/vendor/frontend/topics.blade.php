@@ -22,9 +22,8 @@
                 </div>
 
                 @if ($settings['schema_breadcrumbs'] == '1')
-                {!! $breadcrumb_schema_data->toScript() !!}
+                {!! str_replace('\\', '', $breadcrumb_schema_data->toScript()) !!}
                 @endif
-
                 @endif
 
                 <div class="row topics no-gutters">
@@ -34,7 +33,7 @@
                     <div class="col-md-6 col-12 mb-3 @if ($key++ % 2 != 1) pr-md-2 @else pl-md-2 @endif">
 
                         <a href="{{ asset($settings['topic_base']) }}/{{ $topics->slug }}">
-                            <img src="{{ asset('images') }}/topics/{{ $topics->image}}" class="img-fluid" alt="{{ $topics->title}}">
+                            <img src="{{ asset('images') }}/topics/{{ $topics->image}}" loading="lazy" class="img-fluid" alt="{{ $topics->slug }}">
                         </a>
                         <div class="topic-box">
                             <a href="{{ asset($settings['topic_base']) }}/{{ $topics->slug }}">

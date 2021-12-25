@@ -22,9 +22,8 @@
                 </div>
 
                 @if ($settings['schema_breadcrumbs'] == '1')
-                {!! $breadcrumb_schema_data->toScript() !!}
+                {!! str_replace('\\', '', $breadcrumb_schema_data->toScript()) !!}
                 @endif
-
                 @endif
 
                 <div class="row news">
@@ -36,7 +35,7 @@
                             <a href="{{ asset($settings['news_base']) }}/{{ $news->slug }}">
                                 <div class="news-cover"></div>
                                 <h4>{{ $news->title}}</h4>
-                                <img src="{{ asset('images') }}/news/{{ $news->image}}" class="img-fluid" alt="{{ $news->title}}">
+                                <img src="{{ asset('images') }}/news/{{ $news->image}}" loading="lazy" class="img-fluid" alt="{{ $news->slug }}">
                             </a>
                         </div>
                     </div>

@@ -22,10 +22,10 @@
                 </div>
 
                 @if ($settings['schema_breadcrumbs'] == '1')
-                {!! $breadcrumb_schema_data->toScript() !!}
+                {!! str_replace('\\', '', $breadcrumb_schema_data->toScript()) !!}
                 @endif
-
                 @endif
+                
 
                 <div class="submission-box" id="submission-section" data-fill-all-fields="@lang('general.fill_all_fields')">
 

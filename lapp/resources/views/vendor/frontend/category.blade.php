@@ -26,9 +26,8 @@
                 </div>
 
                 @if ($settings['schema_breadcrumbs'] == '1')
-                {!! $breadcrumb_schema_data->toScript() !!}
+                {!! str_replace('\\', '', $breadcrumb_schema_data->toScript()) !!}
                 @endif
-
                 @endif
 
                 @if($apps->isEmpty())
@@ -44,11 +43,13 @@
 
                  <div class="col-4 mb-2">
                         <div class="d-flex flex-sm-row flex-column app-box" style="position: relative;overflow: hidden;">
-                            <div style="position:absolute; right: -150px;top: 0px;transition: .3s all ease-in-out;" class="download-btn">
-                                <a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}" class="btn btn-primary btn-sm" style="font-size:14px;padding: 10px  23px;">Download</a>
+                            <div style="position:absolute; right: -150px;top: 0px;transition: .3s all ease-in-out;" class="download-btn-Small">
+                                <a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}" loading="lazy" class="btn btn-primary btn-sm" style="font-size:14px;padding: 5px  8px;">Download</a>
                             </div>  
                             <div class="pr-2 mb-1">
-                            <a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}"><img src="{{ asset('images') }}/{{ $app->image }}" class="image rounded" alt="{{ $app->title }}"></a></div>
+                            <a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}">
+                                
+                                <img src="{{ asset('images') }}/{{ $app->image }}" loading="lazy" class="image rounded" alt="{{ $app->slug }}"></a></div>
                             <div class="box"><a href="{{ asset($settings['app_base']) }}/{{ $app->slug }}" class="title">{{ $app->title }}</a>
 
 

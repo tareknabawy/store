@@ -18,8 +18,17 @@ $link_base = Cache::rememberForever('settings', function () {
 
 });
 
+
+
+
+Route::get('post_tag-sitemap.xml','SiteMapTageController@sitemap');
+Route::get('/{name}/{page}/sitemap.xml','SiteMapTageController@viewer');
+
+
 Route::get('sitemap.xml','SiteMapFinalController@sitemap');
 Route::get('sitemaps/{name}/{page}/sitemap.xml','SiteMapFinalController@viewer');
+
+
 
 Route::get('/', 'SiteController@index')->name('home');
 Route::get("/$link_base[category_base]/{slug}", 'SiteController@category')->name('category.show');
@@ -59,7 +68,7 @@ Route::get('/crawler/{slug}', 'AppCrawlerController@index');
 
 
 
-Route::prefix('user/')->name('user.')->middleware(['auth'])->group(function(){
+Route::prefix('user/')->name('user.')->middleware(['auth','NotBlocked'])->group(function(){
     Route::get('/submit-app', 'ProfileController@submit_app')->name('submit-app');
     Route::get('/submission/{submission}', 'ProfileController@show_submission')->name('submission.show');
     Route::post('/submission', 'ProfileController@store_app')->name('submission');

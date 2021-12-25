@@ -13,11 +13,13 @@ return [
     |
     */
 
-    'title' => 'App Portal',
+    'title' => 'Apk Store',
 
     'title_prefix' => '',
 
     'title_postfix' => '',
+
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +32,7 @@ return [
     |
     */
 
-    'logo' => '<b>App</b>Portal',
+    'logo' => '<b>APK</b>STORE',
 
     'logo_mini' => '<b>A</b>P',
 

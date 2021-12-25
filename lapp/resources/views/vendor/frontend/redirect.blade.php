@@ -28,7 +28,7 @@
                     <div class="d-flex flex-row redirect" id="redirect" data-app-id="{{ $app_query->id }}" data-redirection-delay="{{$settings['time_before_redirect']*1000}}">
 
                         <div class="mr-3">
-                            <img src="{{ asset('images') }}//{{$app_query->image}}" alt="{{$app_query->title}}" class="float-left pimage"></div>
+                            <img src="{{ asset('images') }}//{{$app_query->image}}" loading="lazy"  class="float-left pimage" alt="{{$app_query->slug}}"></div>
 
                         <div><h2>{{$app_query->title}}</h2>
                             <span class="voteinfo"></span>
@@ -68,7 +68,7 @@
 
         </div>
         <!-- /Container -->
-
+9999999999999
     </div>
     <!-- /Big Container -->
 

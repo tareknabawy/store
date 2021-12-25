@@ -86,5 +86,7 @@
          </div>
     <!-- /Container -->
      </div>
+ </div>
 <!-- /Big Container -->
+
 @endsection

@@ -3,9 +3,9 @@
 <!-- Big Container -->
 <div class="big-container mt-3">
 <!-- Container -->
-<div class="container">
+    <div class="container">
 <!-- Grid row -->
-<div class="row">
+        <div class="row">
 <!-- Grid column -->
             <div class="col-md-8 page-content news-page mb-3">
                 @if (!is_null($ad[5]))<div class="mb-3">{!! $ad[5] !!}</div>@endif
@@ -34,8 +34,8 @@
                         <div class="col text-center p-2 linkedin"><a onclick="sm_share('https://www.linkedin.com/sharing/share-offsite/?url={{url()->current()}}','Linkedin','600','300');" href="javascript:void(0);"><i class="fab fa-linkedin-in ml-2"></i> <span class="d-none d-lg-inline-block">Linkedin</span></a></div>
                         <div class="col text-center p-2 email"><a href="mailto:?subject={{$page_query->title}}&amp;body={{url()->current()}}"><i class="fas fa-envelope ml-2"></i> <span class="d-none d-lg-inline-block">E-mail</span></a></div>
                         <div class="col text-center p-2 whatsapp"><a onclick="sm_share('https://api.whatsapp.com/send?text={{$page_query->title}} {{url()->current()}}','WhatsApp','700','650');" href="javascript:void(0);"><i class="fab fa-whatsapp ml-2"></i> <span class="d-none d-lg-inline-block">WhatsApp</span></a></div>
+                        </div>
                     </div>
-                </div>
                   <img src="{{ asset('images') }}/news/{{ $page_query->image}}" class="img-fluid mt-md-3" alt="{{ $page_query->image}}" >
 
                 {!! $page_query->details !!} 
@@ -75,18 +75,18 @@
                   </div>
             <!-- /Grid column -->
             <!-- Grid column -->
+            
+            <!-- /Grid column -->
+            </div>
             <div class="col-md-4 bl-1 mb-3">
                 @if (!is_null($ad[3]))<div class="mb-3">{!! $ad[3] !!}</div>@endif
                 @include('frontend::inc.top', ['type' => '1'])
                 @if (!is_null($ad[4]))<div class="mt-3">{!! $ad[4] !!}</div>@endif
             </div>
-            <!-- /Grid column -->
-            </div>
         <!-- /Grid row -->
          </div>
     <!-- /Container -->
      </div>
- </div>
 <!-- /Big Container -->
-
+</div>
 @endsection

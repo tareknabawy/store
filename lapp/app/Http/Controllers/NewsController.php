@@ -136,7 +136,7 @@ class NewsController extends Controller
             File::delete('images/news/' . $oldfilename); // Remove old image file
 
         }
-		
+		$news->untag();
 		$tags = explode(",", $request->get('tags'));
         $news->tag($tags);
         

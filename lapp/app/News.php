@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class News extends Model
 {
     use Sluggable;
-    use \Conner\Tagging\Taggable;
+   use \Conner\Tagging\Taggable;
     /**
      * Return the sluggable configuration array for this model.
      *

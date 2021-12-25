@@ -34,16 +34,24 @@
             <!-- box-body -->
                 <div class="box-body">
 
-                    <div class="form-group">
-                        <label>@lang('admin.title') <span class="text-danger">*</span></label>
-                        <input type="text" name="title" class="form-control" value="{{$news->title}}"
-                               placeholder="@lang('admin.title')"/>
+                    
+					
+					<div class="form-group">
+                        <label>@lang('admin.news_title') <span class="text-danger">*</span></label>
+                        <input type="text" name="title" class="form-control" value="{{$news->title}}" placeholder="@lang('admin.news_title')" />
                     </div>
+					
 
                     <div class="form-group">
                         <label>@lang('admin.short_description') <span class="text-danger">*</span></label>
                         <textarea class="textarea-style textarea-h-100" name="description" placeholder="@lang('admin.short_description')">{{$news->description}}</textarea>
                     </div>
+					
+					<div class="form-group">
+                        <label>@lang('admin.tags')</label>
+                        <input type="text" name="tags" class="form-control" data-role="tagsinput" value="@foreach($news->tags as $tag){{ $tag->name }}@if (!$loop->last),@endif @endforeach" placeholder="@lang('admin.news.tags')" />
+                    </div>
+					
 
                     <div class="form-group">
                         <label>@lang('admin.article') <span class="text-danger">*</span></label>

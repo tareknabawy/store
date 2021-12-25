@@ -43,6 +43,10 @@
                         <label>@lang('admin.short_description') <span class="text-danger">*</span></label>
                         <textarea class="textarea-style textarea-h-100" name="description" placeholder="@lang('admin.short_description')"></textarea>
                     </div>
+					<div class="form-group">
+                        <label>@lang('admin.tags')</label>
+                        <input type="text" name="tags" class="form-control" data-role="tagsinput" placeholder="@lang('admin.tags')" />
+                    </div>
 
                     <div class="form-group">
                         <label>@lang('admin.article') <span class="text-danger">*</span></label>

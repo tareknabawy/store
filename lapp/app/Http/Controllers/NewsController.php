@@ -70,9 +70,15 @@ class NewsController extends Controller
                 ->save($location);
             $news->image = $filename;
         }
-
+		
         $news->save();
         $news->update(['title' => $news->title]);
+		
+		$tags = explode(",", $request->get('tags'));
+        $news->tag($tags);
+        foreach($news->tags as $tag){
+            \App\TaggingTag::where('id',$tag->id)->whereNull('created_at')->whereNull('updated_at')->update(['created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')]); 
+        }
 
         // Ping Google
         if ($this->ping_google == '1') {
@@ -130,6 +136,15 @@ class NewsController extends Controller
             File::delete('images/news/' . $oldfilename); // Remove old image file
 
         }
+		
+		$tags = explode(",", $request->get('tags'));
+        $news->tag($tags);
+        
+        foreach($news->tags as $tag){
+            \App\TaggingTag::where('id',$tag->id)->whereNull('created_at')->whereNull('updated_at')->update(['created_at'=>date('Y-m-d H:i:s'),'updated_at'=>date('Y-m-d H:i:s')]); 
+        }
+
+
 
         // Ping Google
         if ($news->isDirty() && $this->ping_google == '1') {

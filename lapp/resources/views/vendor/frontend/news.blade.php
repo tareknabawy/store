@@ -36,9 +36,24 @@
                         <div class="col text-center p-2 whatsapp"><a onclick="sm_share('https://api.whatsapp.com/send?text={{$page_query->title}} {{url()->current()}}','WhatsApp','700','650');" href="javascript:void(0);"><i class="fab fa-whatsapp ml-2"></i> <span class="d-none d-lg-inline-block">WhatsApp</span></a></div>
                     </div>
                 </div>
-                  <img src="{{ asset('images') }}/news/{{ $page_query->image}}"href="{{ asset('images') }}/news/{{ $page_query->image}}" loading="lazy" class="img-fluid mt-md-3" alt="{{ $page_query->image}}" > 
-                  {!! $page_query->details !!}
+                  <img src="{{ asset('images') }}/news/{{ $page_query->image}}" class="img-fluid mt-md-3" alt="{{ $page_query->image}}" >
 
+                {!! $page_query->details !!} 
+                <div class="col-12 p-3 " style="padding: 20px">
+                    @if (isset($page_query->tags))
+                        @if (count($page_query->tags) > 0)
+                        <div class="tags pt-3">
+                            <span>@lang('general.tags')</span>
+                            <ul>
+                        @foreach ($page_query->tags as $tag)
+                                <li><a href="{{ asset($settings['tag_base']) }}/{{ $tag['slug'] }}">{{ $tag['name'] }}</a></li>
+
+                                @endforeach
+
+                            </ul>
+                        </div>
+                        @endif
+                    @endif
                 @if (count($other_news) > 0)
 
                 <div class="other-news-title mt-4 mb-4">

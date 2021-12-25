@@ -356,6 +356,21 @@ class ApplicationController extends Controller
         // Retrieve application details
         $app = Application::find($id);
 
+
+     
+        $tagged = $app->tagged;
+        $tags = $app->tags;
+        $tags_slugs                 = $app->tags->where('count',1)->pluck('slug')->toArray();
+        $tags_slugs_more_than1      = $app->tags->where('count','>',1);
+        $tagging_tagged             = \App\TaggingTagged::whereIn('tag_slug',$tags_slugs)->delete();
+        \App\TaggingTag::whereIn('id',$app->tags->where('count',1)->pluck('id')->toArray())->delete();
+        foreach($tags_slugs_more_than1 as $reduced_tag){
+            \App\TaggingTag::where('id',$reduced_tag->id)->update(['count'=>$reduced_tag->count-1]);
+        }
+
+
+
+
         if (!empty($app->image)) {
             if (file_exists(public_path() . '/images/' . $app->image)) {
                 unlink(public_path() . '/images/' . $app->image);

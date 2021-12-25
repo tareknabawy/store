@@ -1100,12 +1100,13 @@ class SiteController extends Controller
         if ($this->enable_cache == '1') {
             $news_query = Cache::rememberForever("news-query-$slug", function () use ($slug) {
                 Cache::increment('total_cached');
-                return DB::table('news')->where('slug', $slug)->first();
+                return \App\News::where('slug', $slug)->with(['tagged'])->first();
             });
         } else {
-            $news_query = DB::table('news')->where('slug', $slug)->first();
+            $news_query = \App\News::where('slug', $slug)->with(['tagged'])->first();
         }
 
+        //dd(\App\News::where('slug', $slug)->with(['tagged'])->first());
         // Return 404 page if news not found
         if ($news_query == null) {
             abort(404);
@@ -1114,7 +1115,7 @@ class SiteController extends Controller
         $share_image = $news_query->image;
         $share_image_w = 770;
         $share_image_h = 450;
-
+        //dd($news_query);
         // Meta tags
         MetaTag::setTags([
             'title' => "$news_query->title - $this->site_title",
@@ -1136,16 +1137,16 @@ class SiteController extends Controller
         if ($this->enable_cache == '1') {
             $other_news = Cache::rememberForever("other-news-$slug", function () use ($news_query) {
                 Cache::increment('total_cached');
-                return DB::table('news')->where('id', '!=', $news_query->id)->inRandomOrder()->limit(2)->get();
+                return \App\News::where('id', '!=', $news_query->id)->with(['tagged'])->inRandomOrder()->limit(2)->get();
             });
         } else {
-            $other_news = DB::table('news')->where('id', '!=', $news_query->id)->inRandomOrder()->limit(2)->get();
+            $other_news = \App\News::where('id', '!=', $news_query->id)->with(['tagged'])->inRandomOrder()->limit(2)->get();
         }
 
         // Reading Time
         $reading_time = $this->reading_time($news_query->details, "2");
 
-        // Schema.org Breadcrumbs
+        // Schema.org Breadcrumbs 12
         $breadcrumb_schema_data = Schema::BreadcrumbList()
             ->itemListElement([
                 \Spatie\SchemaOrg\Schema::ListItem()
@@ -1160,9 +1161,12 @@ class SiteController extends Controller
                     ->position(3)
                     ->name($news_query->title)
                     ->item(url()->current()),
-            ]);
-
+            ]); 
+        //dd(isset($news_query->tagged) );
+        //dd($news_query->tagged);
+        //dd($news_query);
         // Return view
+            //dd($news_query);
         return view('frontend::news')->with('page_query', $news_query)->with('other_news', $other_news)->with('reading_time', $reading_time)->with('breadcrumb_schema_data', $breadcrumb_schema_data);
     }
 

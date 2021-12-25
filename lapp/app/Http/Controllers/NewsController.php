@@ -159,6 +159,16 @@ class NewsController extends Controller
         // Retrieve news details
         $news = News::find($id);
 
+        $tagged = $news->tagged;
+        $tags = $news->tags;
+        $tags_slugs                 = $news->tags->where('count',1)->pluck('slug')->toArray();
+        $tags_slugs_more_than1      = $news->tags->where('count','>',1);
+        $tagging_tagged             = \App\TaggingTagged::whereIn('tag_slug',$tags_slugs)->delete();
+        \App\TaggingTag::whereIn('id',$news->tags->where('count',1)->pluck('id')->toArray())->delete();
+        foreach($tags_slugs_more_than1 as $reduced_tag){
+            \App\TaggingTag::where('id',$reduced_tag->id)->update(['count'=>$reduced_tag->count-1]);
+        }
+
         if (!empty($news->image)) {
             if (file_exists(public_path() . '/images/news/' . $news->image)) {
                 unlink(public_path() . '/images/news/' . $news->image);
